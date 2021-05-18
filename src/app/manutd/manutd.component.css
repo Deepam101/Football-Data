@@ -1,0 +1,28 @@
+.images {
+    width: 20%;
+    position: relative;
+}
+.container{
+    display: flex;
+    align-items: stretch;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-content: flex-start ;
+}
+.item-text{
+    font-size: 2rem;
+    height: min-content;
+}
+.item-text .mat-card-title {
+	font-size: 42px;
+	font-weight: 500;
+}
+.item-text .mat-card-subtitle{
+    font-size: 22px;
+}
+.heading{
+    text-align: center;
+}
+.item{
+    flex-basis: auto;
+}

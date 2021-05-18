@@ -1,16 +1,30 @@
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
-import { Club, Result } from './club';
+import { Club, PlayerFetch, Result, Statistics } from './club';
 import { catchError, map, tap } from 'rxjs/operators';
 
 const httpOptions = {
   headers: new HttpHeaders({
-    // 'x-apisports-key': '4434976b11e81bb0f64795765330dde7'
-  })
+    'x-apisports-key': 'b8c29333c1934b3b798c048e1c7a8031'
+  }),
+  params: new HttpParams({fromString: 'id=33'})
+}
+const query = {
+  headers: new HttpHeaders({
+    'x-apisports-key': 'b8c29333c1934b3b798c048e1c7a8031'
+  }),
+  params: new HttpParams({fromString: 'season=2020&team=33&league=39'})
 };
-const url: string = "https://v3.football.api-sports.io/teams?id=33";
-
+const player_team = {
+  headers: new HttpHeaders({
+    'x-apisports-key': 'b8c29333c1934b3b798c048e1c7a8031'
+  }),
+  params: new HttpParams({fromString: 'team=33&season=2020'})
+};
+const url: string = "https://v3.football.api-sports.io/teams";
+const stat: string = "https://v3.football.api-sports.io/teams/statistics";
+const players: string = "https://v3.football.api-sports.io/players"
 @Injectable({
   providedIn: 'root'
 })
@@ -25,8 +39,20 @@ export class ClubService {
     this.club_info = this.http.get<Result>(url, httpOptions).pipe(
       tap(_ => console.log('fetched club')),
       catchError(this.handleError)
-    );;
+    );
     return this.club_info;
+  }
+  getStat(){
+    return this.http.get<Statistics>(stat, query).pipe(
+      tap(_ => console.log('fetched data')),
+      catchError(this.handleError)
+    );
+  }
+  getPlayers(){
+    return this.http.get<PlayerFetch>(players, player_team).pipe(
+      tap(_ => console.log('fetched players')),
+      catchError(this.handleError)
+    );
   }
   
   private handleError(error: HttpErrorResponse) {
