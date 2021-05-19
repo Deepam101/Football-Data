@@ -1,8 +1,8 @@
 <mat-toolbar color='primary'>
     <span>Football Data</span>
-    
+    <input #searchBox id="search-box" (keydown.enter)="search(searchBox.value)" placeholder="Search any premier league team" />
 </mat-toolbar>
-<mat-card *ngIf='this.club'>
+<mat-card *ngIf='club!=undefined'>
     <mat-card class="container">
         <div class="item" class="item-text">
             <h2><mat-card-title >{{ this.club.team.name }}</mat-card-title></h2>
@@ -29,7 +29,7 @@
         </mat-card>
     </mat-card>
 </mat-card>
-<mat-tab-group>
+<mat-tab-group *ngIf='club!=undefined; else other_content'>
     <mat-tab label="Stats"> 
     <div class="container" *ngIf='this.stat'>
         <mat-card class="item child">
@@ -71,4 +71,11 @@
         </mat-card>  </mat-tab>
 </mat-tab-group>
   
-    
+<ng-template #other_content >
+    <div class="error">
+        <div class="item" >
+            <h2>Loading from server </h2>
+            <mat-spinner style="margin: auto;"></mat-spinner>
+        </div>
+    </div>
+</ng-template>

@@ -4,24 +4,8 @@ import { Observable, throwError } from 'rxjs';
 import { Club, PlayerFetch, Result, Statistics } from './club';
 import { catchError, map, tap } from 'rxjs/operators';
 
-const httpOptions = {
-  headers: new HttpHeaders({
-    'x-apisports-key': '8acac2d983cf5cac5c3bbf7b6cd1ef7d'
-  }),
-  params: new HttpParams({fromString: 'id=33'})
-}
-const query = {
-  headers: new HttpHeaders({
-    'x-apisports-key': '8acac2d983cf5cac5c3bbf7b6cd1ef7d'
-  }),
-  params: new HttpParams({fromString: 'season=2020&team=33&league=39'})
-};
-const player_team = {
-  headers: new HttpHeaders({
-    'x-apisports-key': '8acac2d983cf5cac5c3bbf7b6cd1ef7d'
-  }),
-  params: new HttpParams({fromString: 'team=33&season=2020'})
-};
+
+
 const url: string = "https://v3.football.api-sports.io/teams";
 const stat: string = "https://v3.football.api-sports.io/teams/statistics";
 const players: string = "https://v3.football.api-sports.io/players"
@@ -35,20 +19,38 @@ export class ClubService {
     private http: HttpClient,
   ) { }
 
-  getClub(): Observable<Result>{
+  getClub(teamname: string): Observable<Result>{
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'x-apisports-key': '6107560a91f98016c85840772d50ad8e'
+      }),
+      params: new HttpParams({fromString: 'name='+teamname})
+    }
     this.club_info = this.http.get<Result>(url, httpOptions).pipe(
       tap(_ => console.log('fetched club')),
       catchError(this.handleError)
     );
     return this.club_info;
   }
-  getStat(){
+  getStat(teamid: string){
+    let query = {
+      headers: new HttpHeaders({
+        'x-apisports-key': '6107560a91f98016c85840772d50ad8e'
+      }),
+      params: new HttpParams({fromString: 'season=2020&team='+teamid+'&league=39'})
+    };
     return this.http.get<Statistics>(stat, query).pipe(
       tap(_ => console.log('fetched data')),
       catchError(this.handleError)
     );
   }
-  getPlayers(){
+  getPlayers(teamid: string){
+    let player_team = {
+      headers: new HttpHeaders({
+        'x-apisports-key': '6107560a91f98016c85840772d50ad8e'
+      }),
+      params: new HttpParams({fromString: 'team='+teamid+'&season=2020'})
+    };
     return this.http.get<PlayerFetch>(players, player_team).pipe(
       tap(_ => console.log('fetched players')),
       catchError(this.handleError)

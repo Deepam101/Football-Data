@@ -40,3 +40,14 @@
 	position: absolute;
 	right: 20px;
 }
+.error{
+    margin: auto;
+    height: 100%;
+}
+.error .item {
+	margin: auto;
+	top: 40%;
+	position: absolute;
+	left: 45%;
+	text-align: center;
+}

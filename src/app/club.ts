@@ -85,7 +85,7 @@ export interface Players{
     name: string,
     photo: string,
     nationality: string
-  }
+  } 
 }
 export interface PlayerFetch{
   get: string,
