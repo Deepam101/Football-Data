@@ -22,7 +22,7 @@ export class ClubService {
   getClub(teamname: string): Observable<Result>{
     let httpOptions = {
       headers: new HttpHeaders({
-        'x-apisports-key': '6107560a91f98016c85840772d50ad8e'
+        'x-apisports-key': '7eb7bfef19f2af3c98f00e3ec9ef349f'
       }),
       params: new HttpParams({fromString: 'name='+teamname})
     }
@@ -35,7 +35,7 @@ export class ClubService {
   getStat(teamid: string){
     let query = {
       headers: new HttpHeaders({
-        'x-apisports-key': '6107560a91f98016c85840772d50ad8e'
+        'x-apisports-key': '7eb7bfef19f2af3c98f00e3ec9ef349f'
       }),
       params: new HttpParams({fromString: 'season=2020&team='+teamid+'&league=39'})
     };
@@ -47,7 +47,7 @@ export class ClubService {
   getPlayers(teamid: string){
     let player_team = {
       headers: new HttpHeaders({
-        'x-apisports-key': '6107560a91f98016c85840772d50ad8e'
+        'x-apisports-key': '7eb7bfef19f2af3c98f00e3ec9ef349f'
       }),
       params: new HttpParams({fromString: 'team='+teamid+'&season=2020'})
     };
