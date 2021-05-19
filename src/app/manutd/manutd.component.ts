@@ -40,4 +40,5 @@ export class ManutdComponent implements OnInit {
       console.log(data);
     });
   }
+  
 }

@@ -1,5 +1,6 @@
 <mat-toolbar color='primary'>
     <span>Football Data</span>
+    
 </mat-toolbar>
 <mat-card *ngIf='this.club'>
     <mat-card class="container">
@@ -27,43 +28,47 @@
             <img mat-card-image src='{{ this.stat.league.logo }}' alt="Logo" class="images item">
         </mat-card>
     </mat-card>
-    
-    <h2 class="heading">Stats for Season 2020</h2>
+</mat-card>
+<mat-tab-group>
+    <mat-tab label="Stats"> 
     <div class="container" *ngIf='this.stat'>
-        <mat-card class="item">
+        <mat-card class="item child">
             <h2>Won</h2>
             {{ stat.fixtures.wins.away + stat.fixtures.wins.home }}
         </mat-card>
-        <mat-card class="item">
-            <h2>Draw</h2>
+        <mat-card class="item child">
+            <h2>Drawn</h2>
             {{ stat.fixtures.draws.away + stat.fixtures.draws.home }}
         </mat-card>
-        <mat-card class="item">
+        <mat-card class="item child">
             <h2>Lost</h2>
             {{ stat.fixtures.loses.away + stat.fixtures.loses.home }}
         </mat-card>
         
     </div>
     <div class="container" *ngIf='this.stat'>
-        <mat-card>
-            <div>Most Played Formation<br> <h2>{{ stat.lineups[0].formation }}</h2></div>
+        <mat-card class="child">
+            Most Played Formation<br> <h2>{{ stat.lineups[0].formation }}</h2>
         </mat-card>
-        <mat-card>
+        <mat-card class="child">
             Goals scored <br> <h2>{{ stat.goals.for.total.total }}</h2>
         </mat-card>
-        <mat-card>
+        <mat-card class="child">
             Goals conceded <br> <h2>{{ stat.goals.against.total.total }}</h2>
         </mat-card>
     </div>
+    </mat-tab>
+    <mat-tab label="Players">
+        <mat-card *ngIf='this.players.length' class="container">
+            <mat-card class="players" *ngFor="let player of players">
+                <mat-card-header>
+                  <mat-card-title>{{ player.player.name }}</mat-card-title>
+                  <mat-card-subtitle>{{ player.player.nationality }}</mat-card-subtitle>
+                </mat-card-header>
+                <img mat-card-image src='{{ player.player.photo }}' alt="Photo of Player">
+              </mat-card>
+              
+        </mat-card>  </mat-tab>
+</mat-tab-group>
+  
     
-</mat-card>
-<mat-card *ngIf='this.players.length' class="container">
-    <mat-card class="item" *ngFor="let player of players">
-        <mat-card-header>
-          <mat-card-title>{{ player.player.name }}</mat-card-title>
-          <mat-card-subtitle>{{ player.player.nationality }}</mat-card-subtitle>
-        </mat-card-header>
-        <img mat-card-image src='{{ player.player.photo }}' alt="Photo of Player">
-      </mat-card>
-      
-</mat-card>

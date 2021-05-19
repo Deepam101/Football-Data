@@ -6,19 +6,19 @@ import { catchError, map, tap } from 'rxjs/operators';
 
 const httpOptions = {
   headers: new HttpHeaders({
-    'x-apisports-key': 'b8c29333c1934b3b798c048e1c7a8031'
+    'x-apisports-key': '8acac2d983cf5cac5c3bbf7b6cd1ef7d'
   }),
   params: new HttpParams({fromString: 'id=33'})
 }
 const query = {
   headers: new HttpHeaders({
-    'x-apisports-key': 'b8c29333c1934b3b798c048e1c7a8031'
+    'x-apisports-key': '8acac2d983cf5cac5c3bbf7b6cd1ef7d'
   }),
   params: new HttpParams({fromString: 'season=2020&team=33&league=39'})
 };
 const player_team = {
   headers: new HttpHeaders({
-    'x-apisports-key': 'b8c29333c1934b3b798c048e1c7a8031'
+    'x-apisports-key': '8acac2d983cf5cac5c3bbf7b6cd1ef7d'
   }),
   params: new HttpParams({fromString: 'team=33&season=2020'})
 };

@@ -4,7 +4,7 @@
 }
 .container{
     display: flex;
-    align-items: stretch;
+    align-items: center;
     flex-wrap: wrap;
     justify-content: space-around;
     align-content: flex-start ;
@@ -25,4 +25,18 @@
 }
 .item{
     flex-basis: auto;
+}
+.players{
+	flex: 1 0 12%;
+	margin: auto;
+	padding: 57px;
+	max-width: 145px;
+}
+.child{
+    flex-grow: 1;
+    text-align: center;
+}
+#search-box{
+	position: absolute;
+	right: 20px;
 }
